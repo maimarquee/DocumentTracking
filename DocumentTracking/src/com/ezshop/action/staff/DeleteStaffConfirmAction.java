@@ -1,0 +1,26 @@
+package com.ezshop.action.staff;
+
+import com.mytechnopal.ActionBase;
+import com.mytechnopal.DAOBase;
+import com.ezshop.dao.StaffDAO;
+import com.ezshop.dto.StaffDTO;
+
+public class DeleteStaffConfirmAction extends ActionBase {
+	private static final long serialVersionUID = 1L;
+	
+	protected void validateInput() {
+		validateTrans();
+	}
+	
+	protected void executeLogic() {
+		execute(StaffDTO.SESSION_STAFF, new StaffDAO(), DAOBase.DAO_ACTION_DELETE);
+	}
+	
+	protected void setSessionVars() {
+		setSessionLinkOnConfirm();
+		if(message.isMessageTypeSuccess()) {
+			removeObjByCode(StaffDTO.SESSION_STAFF_PAGINATION, StaffDTO.SESSION_STAFF_LIST, StaffDTO.SESSION_STAFF);
+			sessionInfo.setCurrentLink(sessionInfo.getListLink());
+		}
+	}
+}
