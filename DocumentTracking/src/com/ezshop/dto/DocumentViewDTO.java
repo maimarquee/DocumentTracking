@@ -66,7 +66,7 @@ public class DocumentViewDTO extends DTOBase{
 		return dv;
 	}
 
-	public String[] getTableData() {
+	public String[] getTableData(List<DTOBase> documentTrackingOfficeLogList) {
 		DocumentTrackingOfficeLogDTO dtol = new DocumentTrackingOfficeLogDTO();
 		//DocumentTrackingOfficeLogUtil documentTrackingOfficeLog = new DocumentTrackingOfficeLogUtil();
 		//make last column an code for table data that needs to be updated or deleted

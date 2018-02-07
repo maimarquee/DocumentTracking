@@ -1,5 +1,8 @@
 package com.ezshop.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ezshop.dao.DocumentTrackingOfficeLogDAO;
 import com.ezshop.dao.OfficeDAO;
 import com.ezshop.dto.DocumentTrackingOfficeLogDTO;
@@ -24,5 +27,28 @@ public class DocumentTrackingOfficeLogUtil {
 			}
 		}
 		return officeLogHistory;
+	}
+	
+	/*
+	 * public static List<DTOBase> getMerchandiseTransactionTypeListByType(List<DTOBase> merchandiseTransactionTypeList, String type) {
+		List<DTOBase> list = new ArrayList<DTOBase>();
+		for(DTOBase obj: merchandiseTransactionTypeList) {
+			MerchandiseTransactionTypeDTO mtt = (MerchandiseTransactionTypeDTO) obj;
+			if(mtt.getType().equalsIgnoreCase(type)) {
+				list.add(mtt);
+			}
+		}
+		return list;
+	}
+	 */
+	
+	public static List<DTOBase> getDocumentTrackingOfficeLogList() {
+		List<DTOBase> list = new ArrayList<DTOBase>();
+		for(DTOBase obj: new DocumentTrackingOfficeLogDAO().getDocumentTrackingOfficeLogList()){
+			DocumentTrackingOfficeLogDTO dtol = (DocumentTrackingOfficeLogDTO) obj;
+			list.add(dtol);
+		}
+		return list;
+		
 	}
 }

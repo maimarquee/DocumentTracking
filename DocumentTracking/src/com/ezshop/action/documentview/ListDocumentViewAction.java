@@ -23,8 +23,8 @@ public class ListDocumentViewAction extends ActionBase{
 	protected void setSessionVars() {
 		sessionInfo.setTransitionLink(new String[] {"", "U271"}, new String[] {"", "U272", ""}, new String[] {"", "U273", ""}, "U269", "U270");
 		if(!sessionInfo.isPreviousLinkUpdate() && !sessionInfo.isPreviousLinkDeleteSubmit()) {
-			DTOBase obj = UserUtil.getUserByUserCode(sessionInfo.getCurrentUser().getCode());
-			StaffDTO staff = StaffUtil.getStaff(obj);
+			//DTOBase obj = UserUtil.getUserByUserCode(sessionInfo.getCurrentUser().getCode());
+			//StaffDTO staff = StaffUtil.getStaff(obj);
 
 			setSessionAttribute(DocumentTypeDTO.SESSION_DOCUMENT_TYPE_LIST, new DocumentTypeDAO().getDocumentTypeList());
 			setSessionAttribute(OfficeDTO.SESSION_OFFICE_LIST, new OfficeDAO().getOfficeList());
