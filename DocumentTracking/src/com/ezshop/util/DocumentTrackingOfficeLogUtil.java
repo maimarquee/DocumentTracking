@@ -29,19 +29,18 @@ public class DocumentTrackingOfficeLogUtil {
 		return officeLogHistory;
 	}
 	
-	/*
-	 * public static List<DTOBase> getMerchandiseTransactionTypeListByType(List<DTOBase> merchandiseTransactionTypeList, String type) {
-		List<DTOBase> list = new ArrayList<DTOBase>();
-		for(DTOBase obj: merchandiseTransactionTypeList) {
-			MerchandiseTransactionTypeDTO mtt = (MerchandiseTransactionTypeDTO) obj;
-			if(mtt.getType().equalsIgnoreCase(type)) {
-				list.add(mtt);
+	public static String getDocumentTrackingOfficeLogStatusByCode(List<DTOBase> documentTrackingOfficeLogList, String documentTrackingCode) {
+		String status = "";
+		for(DTOBase dtolscObj: documentTrackingOfficeLogList) {
+			DocumentTrackingOfficeLogDTO dtol = (DocumentTrackingOfficeLogDTO) dtolscObj;
+			if(dtol.getDocumentTrackingOfficeLog().getCode().equalsIgnoreCase(documentTrackingCode)) {
+				status = dtol.getDocumentTrackingOfficeLog().getStatus();
 			}
 		}
-		return list;
+		
+		return status;
 	}
-	 */
-	
+
 	public static List<DTOBase> getDocumentTrackingOfficeLogList() {
 		List<DTOBase> list = new ArrayList<DTOBase>();
 		for(DTOBase obj: new DocumentTrackingOfficeLogDAO().getDocumentTrackingOfficeLogList()){

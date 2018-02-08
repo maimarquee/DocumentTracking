@@ -67,10 +67,12 @@ public class DocumentViewDTO extends DTOBase{
 	}
 
 	public String[] getTableData(List<DTOBase> documentTrackingOfficeLogList) {
-		DocumentTrackingOfficeLogDTO dtol = new DocumentTrackingOfficeLogDTO();
+		String status = "";
+		
+		
 		//DocumentTrackingOfficeLogUtil documentTrackingOfficeLog = new DocumentTrackingOfficeLogUtil();
 		//make last column an code for table data that needs to be updated or deleted
-		return new String[] {getCode(), getName(), getDescription() ,getCode()};
+		return new String[] {getCode(), getName(), getDescription(), status ,getCode()};
 	}
 	public String getName() {
 		return name;
