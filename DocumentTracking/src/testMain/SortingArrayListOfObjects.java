@@ -49,5 +49,4 @@ public class SortingArrayListOfObjects {
 			System.out.println("name: " + alStudent.get(icount).name + " / "  +"age: "+  alStudent.get(icount).age);
 		}
 	}
-	
 }

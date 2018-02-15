@@ -1,6 +1,8 @@
 package com.ezshop.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.ezshop.dao.DocumentTrackingOfficeLogDAO;
@@ -29,7 +31,8 @@ public class DocumentTrackingOfficeLogUtil {
 		return officeLogHistory;
 	}
 	
-	public static String getDocumentTrackingOfficeLogStatusByCode(List<DTOBase> documentTrackingOfficeLogList, String documentTrackingCode) {
+	//WARN BY THIS, THIS MIGHT NOT BE IN USE BY NOW
+/*	public static String getDocumentTrackingOfficeLogStatusByCode(List<DTOBase> documentTrackingOfficeLogList, String documentTrackingCode) {
 		String status = "";
 		for(DTOBase dtolscObj: documentTrackingOfficeLogList) {
 			DocumentTrackingOfficeLogDTO dtol = (DocumentTrackingOfficeLogDTO) dtolscObj;
@@ -37,17 +40,26 @@ public class DocumentTrackingOfficeLogUtil {
 				status = dtol.getDocumentTrackingOfficeLog().getStatus();
 			}
 		}
-		
 		return status;
-	}
+	}*/
 
-	public static List<DTOBase> getDocumentTrackingOfficeLogList() {
+	//THIS SHOULD BE THE ONE IM GONNA BE USING//but it not trying to filter the list by code so it should have to filter the code first
+	public static List<DTOBase> getDocumentTrackingOfficeLogListFilterByCode(List<DTOBase> documentTrackingOfficeLogList, String code) {
 		List<DTOBase> list = new ArrayList<DTOBase>();
-		for(DTOBase obj: new DocumentTrackingOfficeLogDAO().getDocumentTrackingOfficeLogList()){
+		for(DTOBase obj: documentTrackingOfficeLogList){
 			DocumentTrackingOfficeLogDTO dtol = (DocumentTrackingOfficeLogDTO) obj;
-			list.add(dtol);
+			if(dtol.getCode().equalsIgnoreCase(code)){
+				list.add(dtol);
+			}
 		}
+
+		//i guess i dont need this anymore;
+		/*Collections.sort(list, new Comparator<DTOBase>() {//this should sort the list in ascending or descending order
+			@Override
+			public int compare(DTOBase arg1, DTOBase arg0) {//but i do not know why it is not getting the properties of officelog
+				return Integer.valueOf(arg0.getId()).compareTo(arg1.getId());
+			}
+		});*/
 		return list;
-		
 	}
 }

@@ -6,8 +6,10 @@ import java.util.List;
 
 import com.ezshop.dao.OfficeDAO;
 import com.ezshop.util.DocumentTrackingOfficeLogUtil;
+import com.ezshop.util.DocumentViewUtil;
 import com.mytechnopal.DTOBase;
 import com.mytechnopal.util.DateTimeUtil;
+import com.mytechnopal.util.StringUtil;
 
 public class DocumentViewDTO extends DTOBase{
 
@@ -33,6 +35,7 @@ public class DocumentViewDTO extends DTOBase{
 	private List<DTOBase> documentOfficeLogList;
 	
 	
+	
 	public DocumentViewDTO(){
 		super();
 		name = "";
@@ -46,6 +49,7 @@ public class DocumentViewDTO extends DTOBase{
 		trackingComplete = "";
 		trackingCompleteDate = DateTimeUtil.getCurrentTimestamp();
 		documentOfficeLogList = new ArrayList<DTOBase>();
+		
 	}
 
 	public DocumentViewDTO getDocumentView() {
@@ -66,12 +70,59 @@ public class DocumentViewDTO extends DTOBase{
 		return dv;
 	}
 
-	public String[] getTableData(List<DTOBase> documentTrackingOfficeLogList) {
-		String status = "";
-		
-		
+	//List<DTOBase> newDocumentTrackingOfficeLogList = DocumentTrackingOfficeLogUtil.getDocumentTrackingOfficeLogListFilterByCode(code);
+	public String[] getTableData(List<DTOBase> documentTrackingOfficeLogList) {//this thing has a list
+		String code = getCode();
+		//String status = DocumentViewUtil.getIndividualDocumentStatus(documentTrackingOfficeLogList, code); //format the status in here as a string. 
+		//should have the doucmenttrackingofficeloglist filter by code mehtod here. but still thinking on how to loop and get just one by one.. 
+		String status = DocumentViewUtil.getnewDocumentOfficeLogList(code);
 		//DocumentTrackingOfficeLogUtil documentTrackingOfficeLog = new DocumentTrackingOfficeLogUtil();
 		//make last column an code for table data that needs to be updated or deleted
+		/*
+		 * double totalRemoved = 0d;
+		 * for(int i=0; i<merchandiseTransactionTypeRemovedList.size(); i++) {
+			MerchandiseTransactionTypeDTO mtt = (MerchandiseTransactionTypeDTO) merchandiseTransactionTypeRemovedList.get(i);
+			double qty = MerchandiseUtil.getTotalQtyByMerchandiseTransactionTypeCode(merchandiseTransactionList, mtt.getCode());
+			totalRemoved += qty;
+		}
+		 */
+		/*List<DTOBase> newDocumentTrackingOfficeLogList = new ArrayList<DTOBase>();
+		for(int i=0; i<documentTrackingOfficeLogList.size(); i++){
+			DocumentTrackingOfficeLogDTO dtol = (DocumentTrackingOfficeLogDTO) documentTrackingOfficeLogList.get(i);
+			DocumentTrackingOfficeLogUtil dtolu = new DocumentTrackingOfficeLogUtil();
+			if(dtol.getCode().equalsIgnoreCase(getCode())){
+				newDocumentTrackingOfficeLogList.add(dtolu);
+			}
+			//newDocumentTrackingOfficeLogList.add(dtolu.getDocumentTrackingOfficeLogListFilterByCode(documentTrackingOfficeLogList, getCode())); //this thing has a list. what the .....
+		}*/
+		
+		/*
+		 * List<DTOBase> officeList = new OfficeDAO().getOfficeList();  //all the office list
+			List<DTOBase> officeListnew = new ArrayList<DTOBase>();		//office list remove current office
+			for(DTOBase Officeobj : officeList) {
+				OfficeDTO office = (OfficeDTO) Officeobj;
+				if(!staff.getOffice().getCode().equalsIgnoreCase(office.getCode())) {//if NOT == current office, display all list aside the current office
+					officeListnew.add(office);
+				}
+			}
+		 */
+		
+		/*List<DTOBase> documentTrackingOfficeListNew = new ArrayList<DTOBase>();
+		for(DTOBase documentTrackingOfficeListObj: documentTrackingOfficeLogList) {
+			DocumentTrackingOfficeLogDTO dtol = (DocumentTrackingOfficeLogDTO) documentTrackingOfficeListObj;
+			if(dtol.getCode().equalsIgnoreCase(code)){//this is wrong
+				documentTrackingOfficeListNew.add(dtol);
+			}
+		}
+		//status = newDocumentTrackingOfficeLogList.get(newDocumentTrackingOfficeLogList.size()-1);
+				//games.get(games.size() -1);
+			int i = documentTrackingOfficeListNew.size();
+			DocumentTrackingOfficeLogDTO ndtol = (DocumentTrackingOfficeLogDTO) documentTrackingOfficeListNew.get(0);
+			status = ndtol.getStatus();
+			int statuses = documentTrackingOfficeListNew.size();*/
+			//status = "" + statuses;
+		
+		
 		return new String[] {getCode(), getName(), getDescription(), status ,getCode()};
 	}
 	public String getName() {

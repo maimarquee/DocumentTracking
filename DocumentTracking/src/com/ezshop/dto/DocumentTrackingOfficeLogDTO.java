@@ -23,6 +23,7 @@ public class DocumentTrackingOfficeLogDTO extends DTOBase {
 	private String carrier;
 	private List<DTOBase> documentTrackList;
 	private List<DTOBase> documentTrackingOfficeLogList;
+	private List<DTOBase> documentStatusList; //use this
 	
 	public DocumentTrackingOfficeLogDTO() {
 		super();
@@ -32,7 +33,7 @@ public class DocumentTrackingOfficeLogDTO extends DTOBase {
 		carrier = "";
 		documentTrackList = new ArrayList<DTOBase>();
 		documentTrackingOfficeLogList = new ArrayList<DTOBase>();
-		
+		documentStatusList = new ArrayList<DTOBase>();
 	}
 
 	public DocumentTrackingOfficeLogDTO getDocumentTrackingOfficeLog() {
@@ -43,6 +44,7 @@ public class DocumentTrackingOfficeLogDTO extends DTOBase {
 		dtol.setCarrier(carrier);
 		dtol.setDocumentTrackList(documentTrackList);
 		dtol.setDocumentTrackingOfficeLogList(documentTrackingOfficeLogList);
+		dtol.setDocumentStatusList(documentStatusList);
 		return dtol;
 	}
 	
@@ -101,5 +103,13 @@ public class DocumentTrackingOfficeLogDTO extends DTOBase {
 
 	public void setCarrier(String carrier) {
 		this.carrier = carrier;
+	}
+
+	public List<DTOBase> getDocumentStatusList() {
+		return documentStatusList;
+	}
+
+	public void setDocumentStatusList(List<DTOBase> documentStatusList) {
+		this.documentStatusList = documentStatusList;
 	}
 }
